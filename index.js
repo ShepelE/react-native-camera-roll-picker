@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Row from './Row';
+import find from 'lodash/find';
 
 import ImageItem from './ImageItem';
 
@@ -99,11 +100,22 @@ class CameraRollPicker extends Component {
 
     if (assets.length > 0) {
       newState.lastCursor = data.page_info.end_cursor;
-      newState.images = this.state.images.concat(assets);
+      newState.images = [...this.state.images];
+      assets.forEach(image => {
+        const isAdded = !!find(this.state.images, oldImage => oldImage.node.image.uri === image.node.image.uri);
+        if (!isAdded) {
+          newState.images.push(image);
+        }
+      });
       newState.data = nEveryRow(newState.images, this.props.imagesPerRow);
     }
 
-    this.setState(newState);
+    const shouldFetch = newState.images.length === this.state.images.length;
+    this.setState(newState, () => {
+      if (shouldFetch) {
+        this.onEndReached();
+      }
+    });
   }
 
   fetch() {

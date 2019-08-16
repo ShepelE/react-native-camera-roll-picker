@@ -36,12 +36,14 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+package-lock.json
 
 # others #
 ##########
 *.pyo
 *.pyc
 *~
+.idea
 
 # Dependency directory #
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git #
