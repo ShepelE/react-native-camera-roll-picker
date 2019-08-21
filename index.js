@@ -101,20 +101,19 @@ class CameraRollPicker extends Component {
     if (assets.length > 0) {
       newState.lastCursor = data.page_info.end_cursor;
       newState.images = [...this.state.images];
+      // before adding photo to list, lib has to check if this photo is already added to prevent multiple photos adding
       assets.forEach(image => {
+        // image uri is a unique field to check photos
         const isAdded = !!find(this.state.images, oldImage => oldImage.node.image.uri === image.node.image.uri);
-        if (!isAdded) {
+        if (!isAdded) { // add a new photo ONLY if it is not added yet
           newState.images.push(image);
         }
       });
       newState.data = nEveryRow(newState.images, this.props.imagesPerRow);
     }
 
-    const shouldFetch = newState.images.length === this.state.images.length;
     this.setState(newState, () => {
-      if (shouldFetch) {
-        this.onEndReached();
-      }
+      this.onEndReached();
     });
   }
 
