@@ -29,10 +29,6 @@ class ImageItem extends Component {
     this.imageSize = (width - (imagesPerRow + 1) * imageMargin) / imagesPerRow;
   }
 
-  handleClick(item) {
-    this.props.onClick(item);
-  }
-
   render() {
     const {
       item, selected, selectedMarker, imageMargin,
@@ -44,11 +40,14 @@ class ImageItem extends Component {
     />);
 
     const { image } = item.node;
+    // node contain location info, need to return it in image object
+    image.latitude = item.node.location.latitude || null;
+    image.longitude = item.node.location.longitude || null;
 
     return (
       <TouchableOpacity
         style={{ marginBottom: imageMargin, marginRight: imageMargin }}
-        onPress={() => this.handleClick(image)}
+        onPress={() => this.props.onClick(image)}
       >
         <Image
           source={{ uri: image.uri }}
