@@ -40,9 +40,12 @@ class ImageItem extends Component {
     />);
 
     const { image } = item.node;
-    // node contain location info, need to return it in image object
-    image.latitude = item.node.location.latitude || null;
-    image.longitude = item.node.location.longitude || null;
+
+    // if node contain location info, need to return it in image object
+    if (item.node.location) {
+      image.latitude = item.node.location.latitude || null;
+      image.longitude = item.node.location.longitude || null;
+    }
 
     return (
       <TouchableOpacity
