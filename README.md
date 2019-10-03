@@ -6,7 +6,7 @@ CameraRoll Picker component for React native
 
 <a href="https://raw.githubusercontent.com/jeanpan/react-native-camera-roll-picker/master/demo/demo.gif"><img src="https://raw.githubusercontent.com/jeanpan/react-native-camera-roll-picker/master/demo/demo.gif" width="350"></a>
 
-Requires `react-native >=0.43.0`
+Requires `react-native >=0.60.0`
 
 the single reason to make this fork was not to repeat photos in the list when groupTypes={'All'}
 
@@ -14,6 +14,7 @@ the single reason to make this fork was not to repeat photos in the list when gr
 * Make sure node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj has been imported to project libraries by following the [libraries linking instructions](https://facebook.github.io/react-native/docs/linking-libraries-ios.html). Don't forget to link the `libRCTCamera.a` into `Link Binary with Binaries` on your target's Build Phases.
 * Install component through npm
 ```
+$ npm install react-native-cameraroll --save
 $ npm install react-native-camera-roll-picker --save
 ```
 

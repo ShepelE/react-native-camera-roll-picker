@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  CameraRoll,
   Platform,
   StyleSheet,
   View,
@@ -11,6 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import Row from './Row';
 import find from 'lodash/find';
+import CameraRoll from "@react-native-community/cameraroll";
 
 import ImageItem from './ImageItem';
 
